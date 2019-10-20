@@ -15,10 +15,16 @@ Zone Lab is a playground to help you understand the operation mechanism of Zone.
 
 Naive comes from this [I reverse-engineered Zones (zone.js) and here is what I’ve found](https://blog.angularindepth.com/i-reverse-engineered-zones-zone-js-and-here-is-what-ive-found-1f48dc87659b). You can learn how Zone.js manage multiple zones.
 
+[naive.html](./1.naive/naive.html)
+
 ## 2.Counting
 
 Counting comes from the example of [Zone.js repository](https://github.com/JiaLiPassion/zone.js). You can learn how Zone.js monkey-pach the global setTimeout and how Zone.js schedule it.
 
+[counting.html](./2.counting/counting.html)
+
 ## 3.Tour
 
 Tour is inspired by Counting but it remove some complicate code and help readers focus on the implementation inside in Zone.js.
+
+[tour.html](./3.tour/tour.html)
