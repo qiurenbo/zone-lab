@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Source Tour</title>
+    <script src="../zone/zone.js"></script>
+  </head>
+  <body>
+    <script>
+      const tour = Zone.current.fork({
+        name: "tourZone",
+
+        onScheduleTask: function(delegate, current, target, task) {
+          console.log("Hook - onScheduleTask");
+          delegate.scheduleTask(target, task);
+        },
+
+        onInvokeTask: function(
+          delegate,
+          current,
+          target,
+          task,
+          applyThis,
+          applyArgs
+        ) {
+          console.log("Hook - onInvokeTask");
+          delegate.invokeTask(target, task, applyThis, applyArgs);
+        },
+
+        onHasTask: function(delegate, current, target, hasTask) {
+          if (hasTask.macroTask) {
+            console.log("Hook - There are outstanding MacroTasks.");
+          } else {
+            console.log("Hook - All MacroTasks have been completed.");
+          }
+        }
+      });
+
+      tour.run(function() {
+        setTimeout(() => {
+          console.log("Callback - Do something");
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>
