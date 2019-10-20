@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Counting Pending Tasks</title>
+    <script src="../zone/zone.js"></script>
+  </head>
+  <body>
+    <script>
+      /*
+       * Zone that counts pending async tasks
+       */
+      const zoneA = Zone.current.fork({ name: "A" });
+      const zoneB = Zone.current.fork({ name: "B" });
+
+      function c() {
+        console.log(Zone.current.name); // A
+      }
+      function b() {
+        console.log(Zone.current.name); // B
+        zoneA.run(c);
+      }
+      function a() {
+        console.log(Zone.current.name); // A
+        zoneB.run(b);
+      }
+      zoneA.run(a);
+    </script>
+  </body>
+</html>
